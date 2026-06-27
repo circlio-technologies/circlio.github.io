@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Circlio Technologies Limited</title>
+<meta name="description" content="Retail expiry intelligence for East African supermarkets. Circlio Technologies Limited builds intelligent systems that help supermarkets reduce waste, protect margins, and reward loyal customers.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --navy:   #0E1E36;
+    --teal:   #00BCB4;
+    --slate:  #2C3E5A;
+    --silver: #B4BCE0;
+    --cream:  #F8F6F0;
+    --white:  #FFFFFF;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--cream);
+    color: var(--navy);
+    font-size: 16px;
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    background: var(--navy);
+    height: 64px;
+    padding: 0 2.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .nav-logo { display: flex; align-items: center; text-decoration: none; }
+  .logo-svg  { height: 30px; width: auto; }
+
+  .nav-cta {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    color: var(--navy);
+    background: var(--teal);
+    text-decoration: none;
+    padding: 8px 22px;
+    border-radius: 2px;
+    transition: opacity 150ms ease;
+  }
+  .nav-cta:hover { opacity: 0.88; }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh;
+    background: var(--navy);
+    display: flex;
+    align-items: center;
+    padding: 64px 2.5rem 0;
+    position: relative;
+    overflow: hidden;
+  }
+
+  /* subtle concentric-ring echo of the logo mark */
+  .hero::before, .hero::after {
+    content: '';
+    position: absolute;
+    right: -100px;
+    top: 50%;
+    transform: translateY(-50%);
+    border-radius: 50%;
+    pointer-events: none;
+  }
+  .hero::before {
+    width: 480px; height: 480px;
+    border: 1px solid rgba(0,188,180,0.10);
+  }
+  .hero::after {
+    width: 700px; height: 700px;
+    border: 1px solid rgba(0,188,180,0.05);
+  }
+
+  .hero-inner {
+    max-width: 820px;
+    margin: 0 auto;
+    padding: 5rem 0;
+    position: relative;
+    z-index: 1;
+  }
+
+  .eyebrow {
+    font-family: 'Space Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--teal);
+    margin-bottom: 1.5rem;
+  }
+
+  .hero-headline {
+    font-family: 'DM Sans', sans-serif;
+    font-size: clamp(38px, 5.5vw, 64px);
+    font-weight: 500;
+    line-height: 1.06;
+    letter-spacing: -0.02em;
+    color: var(--white);
+    margin-bottom: 1.75rem;
+  }
+
+  .hero-headline em {
+    font-style: normal;
+    color: var(--teal);
+  }
+
+  .hero-sub {
+    font-size: 18px;
+    font-weight: 400;
+    color: rgba(255,255,255,0.55);
+    max-width: 560px;
+    line-height: 1.7;
+    margin-bottom: 2.5rem;
+  }
+
+  .btn-teal {
+    display: inline-block;
+    background: var(--teal);
+    color: var(--navy);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    padding: 14px 32px;
+    border-radius: 2px;
+    text-decoration: none;
+    transition: opacity 150ms ease;
+  }
+  .btn-teal:hover { opacity: 0.88; }
+
+  /* ── SHARED SECTION ATOMS ── */
+  .section-inner   { max-width: 960px; margin: 0 auto; }
+  .section-label   {
+    font-family: 'Space Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--teal);
+    margin-bottom: 1rem;
+  }
+  .section-headline {
+    font-family: 'DM Sans', sans-serif;
+    font-size: clamp(26px, 3.5vw, 40px);
+    font-weight: 500;
+    line-height: 1.15;
+    letter-spacing: -0.01em;
+    color: var(--navy);
+    margin-bottom: 1.25rem;
+  }
+  .section-body {
+    font-size: 17px;
+    color: var(--slate);
+    max-width: 680px;
+    line-height: 1.8;
+  }
+
+  /* ── PROBLEM ── */
+  .section-problem { background: var(--cream); padding: 6.5rem 2.5rem; }
+
+  .stat-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1px;
+    margin-top: 3.5rem;
+    background: var(--silver);
+    border: 1px solid var(--silver);
+  }
+
+  .stat-card {
+    background: var(--white);
+    padding: 2rem 1.75rem;
+  }
+
+  .stat-number {
+    font-family: 'Space Mono', monospace;
+    font-size: 38px;
+    font-weight: 700;
+    color: var(--navy);
+    line-height: 1;
+    margin-bottom: 0.6rem;
+  }
+  .stat-number span { color: var(--teal); }
+
+  .stat-label {
+    font-size: 13px;
+    color: var(--slate);
+    line-height: 1.55;
+  }
+
+  /* ── SOLUTION ── */
+  .section-solution { background: var(--slate); padding: 6.5rem 2.5rem; }
+  .section-solution .section-label    { color: var(--teal); }
+  .section-solution .section-headline { color: var(--white); }
+  .section-solution .section-body     { color: rgba(255,255,255,0.55); }
+
+  .pillar-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+    gap: 1.25rem;
+    margin-top: 3rem;
+  }
+
+  .pillar {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(180,188,224,0.15);
+    padding: 1.75rem;
+    border-radius: 2px;
+    transition: border-color 200ms ease;
+  }
+  .pillar:hover { border-color: rgba(0,188,180,0.4); }
+
+  .pillar-bar {
+    width: 28px;
+    height: 3px;
+    background: var(--teal);
+    margin-bottom: 1.25rem;
+    border-radius: 1px;
+  }
+
+  .pillar-title {
+    font-size: 15px;
+    font-weight: 500;
+    color: var(--white);
+    margin-bottom: 0.5rem;
+  }
+
+  .pillar-body {
+    font-size: 14px;
+    color: rgba(255,255,255,0.45);
+    line-height: 1.7;
+  }
+
+  /* ── WHO ── */
+  .section-who { background: var(--cream); padding: 6.5rem 2.5rem; }
+
+  .who-layout {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    margin-top: 3rem;
+    align-items: start;
+  }
+  @media (max-width: 680px) {
+    .who-layout { grid-template-columns: 1fr; gap: 2.5rem; }
+  }
+
+  .who-body { font-size: 17px; color: var(--slate); line-height: 1.8; margin-bottom: 1.5rem; }
+
+  .pilot-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--navy);
+    color: var(--white);
+    font-family: 'Space Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 8px 16px;
+    border-radius: 2px;
+  }
+  .pilot-dot {
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: var(--teal);
+    animation: blink 1.8s ease-in-out infinite;
+  }
+  @keyframes blink { 0%,100% { opacity:1; } 50% { opacity:0.25; } }
+
+  .market-list { list-style: none; }
+  .market-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 1rem 0;
+    border-bottom: 1px solid rgba(44,62,90,0.12);
+    font-size: 15px;
+    font-weight: 500;
+    color: var(--navy);
+  }
+  .market-item::before {
+    content: '';
+    width: 5px; height: 5px;
+    border-radius: 50%;
+    background: var(--teal);
+    flex-shrink: 0;
+  }
+
+  /* ── CONTACT ── */
+  .section-contact {
+    background: var(--navy);
+    padding: 6.5rem 2.5rem;
+    text-align: center;
+  }
+  .section-contact .section-label    { justify-content: center; display: block; }
+  .section-contact .section-headline { color: var(--white); }
+  .section-contact .section-body     {
+    color: rgba(255,255,255,0.45);
+    margin: 0 auto 2.5rem;
+    text-align: center;
+  }
+
+  .contact-btns {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-top: 2rem;
+  }
+
+  .btn-ghost {
+    display: inline-block;
+    background: transparent;
+    color: var(--white);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    padding: 13px 32px;
+    border-radius: 2px;
+    border: 1px solid rgba(180,188,224,0.25);
+    text-decoration: none;
+    transition: border-color 150ms ease;
+  }
+  .btn-ghost:hover { border-color: var(--silver); }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--navy);
+    border-top: 1px solid rgba(180,188,224,0.08);
+    padding: 1.75rem 2.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+  }
+
+  .footer-copy {
+    font-family: 'Space Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    color: rgba(255,255,255,0.25);
+  }
+
+  .footer-attr {
+    font-family: 'Space Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.06em;
+    color: rgba(255,255,255,0.2);
+  }
+  .footer-attr em { font-style: normal; color: var(--teal); opacity: 0.7; }
+
+  @media (max-width: 600px) {
+    footer { flex-direction: column; text-align: center; }
+    .hero-inner { padding: 4rem 0; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo" aria-label="Circlio Technologies Limited home">
+    <!-- Wordmark: CIRCLIO in Navy palette, teal dots on C and O -->
+    <svg class="logo-svg" viewBox="0 0 210 34" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <!-- C -->
+      <path d="M17 5C9.82 5 4 10.82 4 18C4 25.18 9.82 31 17 31C21.1 31 24.76 29.1 27.2 26.14L23.4 23.06C21.8 24.96 19.54 26.2 17 26.2C12.58 26.2 9 22.62 9 18.2C9 13.78 12.58 10.2 17 10.2C19.54 10.2 21.8 11.44 23.4 13.34L27.2 10.26C24.76 7.3 21.1 5 17 5Z" fill="white"/>
+      <circle cx="4" cy="18" r="3.5" fill="#00BCB4"/>
+      <!-- I -->
+      <rect x="32" y="5" width="5" height="26" fill="white"/>
+      <!-- R -->
+      <path d="M43 5H43V31H48V21.5H51.5L57 31H62.5L56.5 20.7C59.5 19.4 61.5 16.5 61.5 13C61.5 8.6 57.9 5 53.5 5H43ZM48 10H53C55.2 10 57 11.7 57 13.8C57 15.9 55.2 17.5 53 17.5H48V10Z" fill="white"/>
+      <!-- C -->
+      <path d="M83 5C75.82 5 70 10.82 70 18C70 25.18 75.82 31 83 31C87.1 31 90.76 29.1 93.2 26.14L89.4 23.06C87.8 24.96 85.54 26.2 83 26.2C78.58 26.2 75 22.62 75 18.2C75 13.78 78.58 10.2 83 10.2C85.54 10.2 87.8 11.44 89.4 13.34L93.2 10.26C90.76 7.3 87.1 5 83 5Z" fill="white"/>
+      <circle cx="70" cy="18" r="3.5" fill="#00BCB4"/>
+      <!-- L -->
+      <rect x="99" y="5" width="5" height="26" fill="white"/>
+      <rect x="99" y="26" width="14" height="5" fill="white"/>
+      <!-- I -->
+      <rect x="118" y="5" width="5" height="26" fill="white"/>
+      <!-- O -->
+      <path d="M142 5C134.82 5 129 10.82 129 18C129 25.18 134.82 31 142 31C149.18 31 155 25.18 155 18C155 10.82 149.18 5 142 5ZM142 26.2C137.58 26.2 134 22.62 134 18C134 13.38 137.58 10 142 10C146.42 10 150 13.38 150 18C150 22.62 146.42 26.2 142 26.2Z" fill="white"/>
+      <circle cx="142" cy="18" r="3.5" fill="#00BCB4"/>
+    </svg>
+  </a>
+  <a href="#contact" class="nav-cta">Get in touch</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-inner">
+    <p class="eyebrow">Nairobi, Kenya · Est. 2026</p>
+    <h1 class="hero-headline">
+      Smarter shelves.<br>
+      Less waste.<br>
+      <em>Better retail.</em>
+    </h1>
+    <p class="hero-sub">
+      Circlio Technologies Limited builds retail intelligence systems for East African supermarkets — starting with the problem that costs the industry millions every year: stock that expires before it sells.
+    </p>
+    <a href="#contact" class="btn-teal">Request a conversation</a>
+  </div>
+</section>
+
+<!-- PROBLEM -->
+<section class="section-problem" id="problem">
+  <div class="section-inner">
+    <p class="section-label">The problem</p>
+    <h2 class="section-headline">Expiry is a hidden drain on every supermarket's margin.</h2>
+    <p class="section-body">
+      Across East Africa, supermarkets absorb significant losses from products that expire before they are sold — waste that compounds across categories, stores, and seasons. The tools to prevent it have not existed for this market, until now.
+    </p>
+    <div class="stat-grid">
+      <div class="stat-card">
+        <div class="stat-number">5<span>–</span>15<span>%</span></div>
+        <div class="stat-label">of perishable stock written off annually across sub-Saharan retail</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number"><span>#</span>1</div>
+        <div class="stat-label">source of avoidable margin leakage in FMCG categories at retail level</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number">0</div>
+        <div class="stat-label">purpose-built expiry intelligence platforms serving East Africa — until now</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SOLUTION -->
+<section class="section-solution" id="solution">
+  <div class="section-inner">
+    <p class="section-label">Our platform</p>
+    <h2 class="section-headline">ExpirySmart™ — retail expiry intelligence built for East Africa.</h2>
+    <p class="section-body">
+      ExpirySmart™ is a product of Circlio Technologies Limited. It gives supermarket operations teams real-time visibility into expiry risk across their stores — and the tools to act on it automatically, intelligently, and profitably.
+    </p>
+    <div class="pillar-grid">
+      <div class="pillar">
+        <div class="pillar-bar"></div>
+        <div class="pillar-title">Expiry Risk Intelligence</div>
+        <div class="pillar-body">Prioritised visibility into which products, in which stores, are approaching expiry — before it becomes a write-off.</div>
+      </div>
+      <div class="pillar">
+        <div class="pillar-bar"></div>
+        <div class="pillar-title">Automated Markdowns</div>
+        <div class="pillar-body">Dynamic pricing and discount rules that convert near-expiry risk into recovered revenue rather than waste.</div>
+      </div>
+      <div class="pillar">
+        <div class="pillar-bar"></div>
+        <div class="pillar-title">Customer Loyalty Engine</div>
+        <div class="pillar-body">Rewards that bring customers back to buy near-expiry deals — turning waste reduction into a loyalty programme.</div>
+      </div>
+      <div class="pillar">
+        <div class="pillar-bar"></div>
+        <div class="pillar-title">Operations Dashboard</div>
+        <div class="pillar-body">A single view for store managers and head office — real data, real decisions, no spreadsheets.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHO -->
+<section class="section-who" id="market">
+  <div class="section-inner">
+    <p class="section-label">Who we serve</p>
+    <div class="who-layout">
+      <div>
+        <h2 class="section-headline">Built for East African supermarket operations.</h2>
+        <p class="who-body">
+          ExpirySmart™ is designed around the operational realities of multi-branch supermarket groups across Kenya and the wider East African region.
+        </p>
+        <p class="who-body">
+          Pilot conversations are currently underway with leading retail groups in the region.
+        </p>
+        <span class="pilot-badge">
+          <span class="pilot-dot"></span>
+          Pilot stage · 2026
+        </span>
+      </div>
+      <ul class="market-list">
+        <li class="market-item">Multi-branch supermarket chains</li>
+        <li class="market-item">Hypermarkets and large-format retail</li>
+        <li class="market-item">Wholesale and cash-and-carry operators</li>
+        <li class="market-item">Kenya — primary market</li>
+        <li class="market-item">Uganda, Tanzania — expansion markets</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="section-contact" id="contact">
+  <div class="section-inner">
+    <p class="section-label">Get in touch</p>
+    <h2 class="section-headline">We are building something worth talking about.</h2>
+    <p class="section-body" style="max-width: 500px;">
+      Whether you are a supermarket operator, an investor, or someone who cares about food waste and African retail — we would like to hear from you.
+    </p>
+    <div class="contact-btns">
+      <a href="mailto:george.kimani@circlio.co" class="btn-teal">Email us</a>
+      <a href="https://www.linkedin.com/company/circlio-technologies-limited" class="btn-ghost" target="_blank" rel="noopener">Follow on LinkedIn</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <span class="footer-copy">© 2026 Circlio Technologies Limited · Nairobi, Kenya</span>
+  <span class="footer-attr"><em>ExpirySmart™</em> is a product of Circlio Technologies Limited</span>
+</footer>
+
+</body>
+</html>
